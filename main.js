@@ -1,5 +1,18 @@
-const titlebar = require('custom-electron-titlebar')
+const electron = require('electron')
 
-new titlebar.Titlebar({
-    backgroundColor: titlebar.Color.fromHex('#2b2b38')
+const { ipcRenderer } = electron
+
+// Title bar minimize and close logic
+const closeApp = document.getElementById("close-app")
+const minimizeApp = document.getElementById("minimize-app")
+
+closeApp.addEventListener("click", () => {
+    ipcRenderer.send("app/close")
+});
+
+minimizeApp.addEventListener("click", () => {
+    ipcRenderer.send("app/minimize")
 })
+
+
+// Buttons and increments

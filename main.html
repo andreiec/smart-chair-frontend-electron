@@ -3,18 +3,22 @@
 <html>
     <head>
         <link href="styles.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="main.js"></script>
     </head>
     
     <body>
 
         <!-- Title bar -->
-        <div class="title-bar dragable">
-            
+        <div class="title-bar draggable">
+            <div class="title-bar-closeapp-button title-bar-close-button no-draggable" id="close-app">
+                <label>&#10006;</label>
+            </div>
+            <div class="title-bar-minimize-button title-bar-minus-button no-draggable" id="minimize-app">
+                <label>&minus;</label>
+            </div>
         </div>
 
         <!-- All content of app -->
-        <div class="main-container no-dragable">
+        <div class="main-container no-draggable">
     
             <!-- Sidebar -->
             <div class="sidebar">
@@ -162,5 +166,6 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="main.js"></script>
     </body>
 </html>
