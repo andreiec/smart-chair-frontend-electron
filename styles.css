@@ -16,6 +16,21 @@
     font-weight: normal;
 }
 
+.dragable {
+    -webkit-app-region: drag;
+}
+
+.no-dragable {
+    -webkit-app-region: no-drag;
+}
+
+html {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
 body {
     margin: 0;
 }
@@ -200,4 +215,52 @@ body {
 
 .right-panel-border {
     border-bottom: 1px #DFE0EB solid;
+}
+
+.user-input-title {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.user-input-title label {
+    font-size: 16px;
+    font-family: "Mulish-SemiBold";
+    color: #A4A6B3;
+}
+
+.user-input-value {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-input-minus {
+    width: 20px;
+    padding-top: 4px;
+}
+
+.user-input-plus {
+    width: 20px;
+    padding-top: 4px;
+}
+
+.user-input-minus img:hover{
+    cursor: pointer;
+}
+
+.user-input-plus img:hover{
+    cursor: pointer;
+}
+
+.user-input-display-value {
+    width: 94px;
+    text-align: center;
+}
+
+.user-input-display-value label {
+    font-size: 32px;
+    font-family: "Mulish-Bold";
+    color: #363740;
 }
