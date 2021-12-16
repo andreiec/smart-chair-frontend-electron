@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'Mulish';
+    src: url('resources/fonts/Mulish-Regular.ttf') format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Mulish-SemiBold';
+    src: url('resources/fonts/Mulish-SemiBold.ttf') format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Mulish-Bold';
+    src: url('resources/fonts/Mulish-Bold.ttf') format("truetype");
+    font-weight: normal;
+}
+
+body {
+    margin: 0;
+}
+
+.title-bar {
+    height: 30px;
+    background: #2b2b38;  
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 255px;
+    top: 0;
+    left: 0;
+    background: #363740;
+    padding-top: 20px;
+}
+
+.sidebar h1 {
+    display: block;
+    padding: 10px 20px;
+    color: #A4A6B3;
+    text-decoration: none;
+    font-family: "Mulish-Bold";
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: default;
+}
+
+.sidebar a {
+    display: block;
+    padding: 0px 20px;
+    color: #A4A6B3;
+    background: #363740;
+    text-decoration: none;
+    font-family: "Mulish";
+    font-weight: normal;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    height: 56px;
+    line-height: 56px;
+}
+
+.sidebar div {
+    background: #DDE2FF;
+}
+
+.sidebar div a:hover{
+    color: #DDE2FF;
+    margin-left: 3px;
+    transition: 0.3s;
+    background: #3E4049;
+}
+
+.sidebar div a img {
+    width: 14px;
+    margin-right: 22px;
+    margin-left: 10px;
+}
+
+
+/* Main Content */
+
+.content-container {
+    background: #F7FAFC;
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.content-container-padded {
+    width: 100%;
+    height: 100%;
+    background: #F7FAFC;
+}
+
+/* Page title */
+
+.page-title-text {
+    font-family: "Mulish-Bold";
+    font-size: 20px;
+    color: #363740;
+}
+
+/* Biometrics */
+
+.biometrics-content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+
+.biometrics-item {
+    width: 218px;
+    height: 134px;
+    background: white;
+    border: 1px #DFE0EB solid;
+    border-radius: 8px;
+}
+
+.biometrics-item-label {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.biometrics-item-label label {
+    font-size: 16px;
+    font-family: "Mulish-Bold";
+    color: #A4A6B3;
+}
+
+.biometrics-item-value {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.biometrics-item-value label {
+    font-size: 42px;
+    font-family: "Mulish-Bold";
+    color: #363740;
+}
+
+/* User input content */
+
+.user-input-content {
+    width: 962px;
+    height: 546px;
+    background: white;
+    border: 1px #DFE0EB solid;
+    border-radius: 8px;
+    margin-top: 30px;
+}
