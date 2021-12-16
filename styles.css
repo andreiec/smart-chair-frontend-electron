@@ -156,4 +156,48 @@ body {
     border: 1px #DFE0EB solid;
     border-radius: 8px;
     margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-panel {
+    width: 620px;
+    border-right: 1px #DFE0EB solid;
+}
+
+.left-panel-title-div {
+    width: 100%;
+    margin: 30px;
+}
+
+.left-panel label {
+    font-family: "Mulish-Bold";
+    font-size: 24px;
+    color: #363740;
+}
+
+.left-panel-image-div {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.left-panel-image-div img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-right: 25px;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    width: 342px;
+}
+
+.right-panel-item {
+    height: 109px;
+}
+
+.right-panel-border {
+    border-bottom: 1px #DFE0EB solid;
 }
