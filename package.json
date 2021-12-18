@@ -10,13 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/andreiec/smart-chair-frontend-electron.git"
   },
-  "author": "",
+  "author": "Constantinescu Andrei-Eduard",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andreiec/smart-chair-frontend-electron/issues"
   },
   "homepage": "https://github.com/andreiec/smart-chair-frontend-electron#readme",
   "dependencies": {
-    "electron": "^16.0.4"
+    "electron": "^16.0.5"
   }
 }
