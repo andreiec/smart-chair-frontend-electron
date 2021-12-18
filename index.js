@@ -11,17 +11,23 @@ app.on('ready', () => {
         height: 869, 
         autoHideMenuBar: true,
         resizable: false, 
+        frame: false,
+        show: false,
 
         webPreferences: {
             nodeIntegration: true,          
             contextIsolation: false,        
-            enableRemoteModule: true,       
+            enableRemoteModule: true,
+            //devTools: false,    
         },
         
-        frame: false
-        })
-
+    })
+    
+    // Open dev tools
+    //mainWindow.webContents.openDevTools()
     mainWindow.loadFile('main.html')
+    mainWindow.on("ready-to-show", mainWindow.show)
+
 })
 
 ipcMain.on("app/close", (evt, arg) => {
