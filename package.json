@@ -2,7 +2,7 @@
   "name": "smart-chair-frontend-electron",
   "version": "1.0.0",
   "description": "Front end for uni Programming Engineering course. Made in electron for a smart chair that takes user input and biometrics to adjust itself.",
-  "main": "index.js",
+  "main": "js/index.js",
   "scripts": {
     "electron": "electron ."
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/andreiec/smart-chair-frontend-electron#readme",
   "dependencies": {
-    "electron": "^16.0.5"
+    "electron": "^16.0.5",
+    "three": "^0.135.0"
   }
 }

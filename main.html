@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <link href="styles.css" rel="stylesheet" type="text/css" />
+        <script src="js/three.js"></script>
     </head>
     
     <body>
@@ -83,10 +84,14 @@
     
                     <!-- User input and chair panel -->
                     <div class="user-input-content">
+
+                        <!-- Left Panel -->
                         <div class="left-panel">
                             <div class="left-panel-title-div"><label>Biometrics</label></div>
-                            <div class="left-panel-image-div"><img src="resources/images/chair.png" alt="not found" /></div>
+                            <div class="left-panel-image-div" id="renderer-canvas"></div>
                         </div>
+
+                        <!-- Right Panel -->
                         <div class="right-panel">
 
                             <!-- User height -->
@@ -167,6 +172,6 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>
