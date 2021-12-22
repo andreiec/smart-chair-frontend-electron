@@ -1,5 +1,5 @@
 const electron = require('electron');
-import { Scene, PerspectiveCamera, WebGLRenderer, AxesHelper, HemisphereLight, ReinhardToneMapping, SpotLight, Vector3 } from './three.module.js';
+import { Scene, PerspectiveCamera, WebGLRenderer, AxesHelper, HemisphereLight, ReinhardToneMapping, Vector3 } from './three.module.js';
 import { GLTFLoader } from './GLTFLoader.js';
 import { OrbitControls } from './OrbitControls.js';
 
@@ -131,8 +131,8 @@ controls.autoRotateSpeed = 2.25
 controls.enableDamping = true
 controls.enablePan = false
 controls.rotateSpeed = 0.75
-controls.maxPolarAngle = 1.2
-controls.minPolarAngle = 1.2
+controls.maxPolarAngle = 1.3
+controls.minPolarAngle = 1.3
 controls.target = new Vector3(0, 6, 0)
 controls.maxDistance = 11
 controls.update()
