@@ -80,6 +80,46 @@ chair_heating_minus.addEventListener("click", () => {
     }
 })
 
+// Toggle buttons
+const lock_toggle = document.getElementById("lock-toggle")
+const welcome_toggle = document.getElementById("welcome-toggle")
+const heat_toggle = document.getElementById("heat-toggle")
+
+// TODO Get state from user preferences and change button state
+let lock_toggle_state = false
+let welcome_toggle_state = false
+let heat_toggle_state = false
+
+lock_toggle.addEventListener("click", () =>{
+    lock_toggle.classList.toggle("active")
+
+    if (lock_toggle.classList.contains("active")) {
+        lock_toggle_state = true
+    } else {
+        lock_toggle_state = false
+    }
+})
+
+welcome_toggle.addEventListener("click", () =>{
+    welcome_toggle.classList.toggle("active")
+
+    if (welcome_toggle.classList.contains("active")) {
+        welcome_toggle_state = true
+    } else {
+        welcome_toggle_state = false
+    }
+})
+
+heat_toggle.addEventListener("click", () =>{
+    heat_toggle.classList.toggle("active")
+
+    if (heat_toggle.classList.contains("active")) {
+        heat_toggle_state = true
+    } else {
+        heat_toggle_state = false
+    }
+})
+
 
 //
 // THREE.JS RENDERING

@@ -24,7 +24,7 @@ app.on('ready', () => {
     })
     
     // Open dev tools
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
     mainWindow.loadFile('main.html')
     mainWindow.on("ready-to-show", mainWindow.show)
 

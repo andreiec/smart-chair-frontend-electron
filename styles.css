@@ -303,3 +303,69 @@ body {
     font-family: "Mulish-Bold";
     color: #363740;
 }
+
+.toggle {
+    margin-top: 8px;
+    width: 55px;
+    height: 30px;
+    background: #3E4049;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.toggle.active {
+    background: #77C50A;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.toggle-button {
+    width: 24px;
+    height: 24px;
+    margin-top: 3px;
+    margin-left: 3px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.toggle.active .toggle-button {
+    margin-left: 27px;
+}
+
+.vertical-toggle {
+    position: absolute;
+    top: 540px;
+    left: 1190px;
+    width: 30px;
+    height: 55px;
+    background: #3E4049;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.vertical-toggle.active {
+    background: #77C50A;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.vertical-toggle-button {
+    width: 24px;
+    height: 24px;
+    margin-top: 3px;
+    margin-left: 3px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.vertical-toggle.active .vertical-toggle-button {
+    margin-top: 27px;
+}
