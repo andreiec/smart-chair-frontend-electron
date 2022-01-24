@@ -333,7 +333,7 @@ body {
 }
 
 .toggle.active .toggle-button {
-    margin-left: 27px;
+    margin-left: 28px;
 }
 
 .vertical-toggle {
@@ -367,5 +367,5 @@ body {
 }
 
 .vertical-toggle.active .vertical-toggle-button {
-    margin-top: 27px;
+    margin-top: 28px;
 }
