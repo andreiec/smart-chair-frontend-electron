@@ -18,13 +18,13 @@ app.on('ready', () => {
             nodeIntegration: true,          
             contextIsolation: false,        
             enableRemoteModule: true,
-            //devTools: false,    
+            devTools: true,    
         },
         
     })
     
     // Open dev tools
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
     mainWindow.loadFile('main.html')
     mainWindow.on("ready-to-show", mainWindow.show)
 

@@ -2,8 +2,8 @@ const electron = require('electron');
 import { Scene, PerspectiveCamera, WebGLRenderer, AxesHelper, HemisphereLight, ReinhardToneMapping, Vector3 } from './three.module.js';
 import { GLTFLoader } from './GLTFLoader.js';
 import { OrbitControls } from './OrbitControls.js';
-
-const { ipcRenderer } = electron
+import { HOST } from "../variables.js";
+var request = require('electron-request')
 
 // Title bar minimize and close logic
 const closeApp = document.getElementById("close-app")
@@ -17,6 +17,39 @@ minimizeApp.addEventListener("click", () => {
     ipcRenderer.send("app/minimize")
 })
 
+var response_text = null
+
+
+// TEST PROMISE TO SET WIGHT
+const getDataPromise = new Promise(function(resolve, reject) {
+
+    void (async () => {
+
+        const url = HOST + '/weight/measure';
+    
+        const defaultOptions = {
+          method: 'GET',
+        };
+    
+        const response = await request(url, defaultOptions);
+        response_text = await response.text();
+        
+        if (response_text) {
+            resolve(JSON.parse(response_text))
+        }else{
+            reject("NOT OK")
+        }
+    })();
+})
+
+getDataPromise.then(function whenOk(response) {
+    const biometrics_weight = document.getElementById("biometrics-value-weight")
+    biometrics_weight.textContent = response['weight']
+}).catch(function notOk(response) {
+    console.log("Error in promise " + response)
+})
+
+// END TEST PROMISE WORKS!!!!!!!!
 
 // Buttons and increments
 
@@ -34,6 +67,18 @@ const chair_heating_plus = document.getElementById("chair-heating-plus")
 const chair_heating_minus = document.getElementById("chair-heating-minus")
 const chair_heating_value = document.getElementById("chair-heating-value")
 let chair_heating_value_content = parseInt(document.getElementById("chair-heating-value").textContent.substring(0, 2))
+
+
+// TODO Make requests
+    user_height_value_content = 163
+    user_height_value.textContent = user_height_value_content
+
+    table_height_value_content = 81
+    table_height_value.textContent = table_height_value_content
+
+    chair_heating_value_content = 22
+    chair_heating_value.textContent = chair_heating_value_content + "°C"
+
 
 // User height buttons
 user_height_plus.addEventListener("click", () => {
@@ -85,10 +130,12 @@ const lock_toggle = document.getElementById("lock-toggle")
 const welcome_toggle = document.getElementById("welcome-toggle")
 const heat_toggle = document.getElementById("heat-toggle")
 
+
 // TODO Get state from user preferences and change button state
 let lock_toggle_state = false
 let welcome_toggle_state = false
 let heat_toggle_state = false
+
 
 lock_toggle.addEventListener("click", () =>{
     lock_toggle.classList.toggle("active")
