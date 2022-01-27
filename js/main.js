@@ -1,9 +1,8 @@
 const electron = require('electron');
-import { Scene, PerspectiveCamera, WebGLRenderer, AxesHelper, HemisphereLight, ReinhardToneMapping, Vector3 } from './three.module.js';
-import { GLTFLoader } from './GLTFLoader.js';
-import { OrbitControls } from './OrbitControls.js';
 import { HOST } from "../variables.js";
 var request = require('electron-request')
+
+const { ipcRenderer } = electron
 
 // Title bar minimize and close logic
 const closeApp = document.getElementById("close-app")
@@ -17,27 +16,18 @@ minimizeApp.addEventListener("click", () => {
     ipcRenderer.send("app/minimize")
 })
 
-var response_text = null
 
-
-// TEST PROMISE TO SET WIGHT
+// TEST PROMISE TO SET WEIGHT
 const getDataPromise = new Promise(function(resolve, reject) {
-
     void (async () => {
-
         const url = HOST + '/weight/measure';
-    
-        const defaultOptions = {
-          method: 'GET',
-        };
+        const defaultOptions = { method: 'GET' };
     
         const response = await request(url, defaultOptions);
-        response_text = await response.text();
+        const response_json = await response.json();
         
-        if (response_text) {
-            resolve(JSON.parse(response_text))
-        }else{
-            reject("NOT OK")
+        if (response_json) { resolve(response_json) } else {
+            reject(response)
         }
     })();
 })
@@ -70,14 +60,14 @@ let chair_heating_value_content = parseInt(document.getElementById("chair-heatin
 
 
 // TODO Make requests
-    user_height_value_content = 163
-    user_height_value.textContent = user_height_value_content
+user_height_value_content = 163
+user_height_value.textContent = user_height_value_content
 
-    table_height_value_content = 81
-    table_height_value.textContent = table_height_value_content
+table_height_value_content = 81
+table_height_value.textContent = table_height_value_content
 
-    chair_heating_value_content = 22
-    chair_heating_value.textContent = chair_heating_value_content + "°C"
+chair_heating_value_content = 22
+chair_heating_value.textContent = chair_heating_value_content + "°C"
 
 
 // User height buttons
@@ -166,73 +156,3 @@ heat_toggle.addEventListener("click", () =>{
         heat_toggle_state = false
     }
 })
-
-
-//
-// THREE.JS RENDERING
-//
-
-
-// Canvas size
-const canvas_width = 620
-const canvas_height = 445
-
-// Define scene camera and renderer
-const scene = new Scene()
-const camera = new PerspectiveCamera(75, canvas_width / canvas_height, 0.1, 1000)
-const renderer = new WebGLRenderer( {antialias: true, alpha: true } )
-const canvas = document.getElementById("renderer-canvas")
-
-// Adding lighting
-const hemiLight = new HemisphereLight(0xffeeb1, 0x080820, 7.2)
-scene.add(hemiLight)
-
-
-// Set renderer size and background
-renderer.setSize(canvas_width, canvas_height)
-renderer.setClearColor(0x000000, 0)
-renderer.toneMapping = ReinhardToneMapping
-renderer.toneMappingExposure = 1
-
-// Append renderer
-canvas.appendChild(renderer.domElement)
-
-// Load chair model
-const loader = new GLTFLoader()
-let chair 
-
-loader.load("./resources/models/chair.glb", result => {
-    chair = result.scene
-    scene.add(chair)
-})
-
-
-// Set camera position and add orbit controls
-let controls = new OrbitControls(camera, renderer.domElement)
-camera.position.set(-10, 8, 10)
-
-// Orbit controls settings
-controls.enableZoom = false
-controls.autoRotate = true
-controls.autoRotateSpeed = 2.25
-controls.enableDamping = true
-controls.enablePan = false
-controls.rotateSpeed = 0.75
-controls.maxPolarAngle = 1.3
-controls.minPolarAngle = 1.3
-controls.target = new Vector3(0, 6, 0)
-controls.maxDistance = 11
-controls.update()
-
-// Debug axis
-// scene.add(new AxesHelper(500))
-
-
-// Update renderer
-const animate = function () {
-    requestAnimationFrame( animate );
-    renderer.render( scene, camera );
-    controls.update()
-};
-
-animate()
