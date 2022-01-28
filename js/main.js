@@ -54,7 +54,7 @@ const user_height_minus = document.getElementById("user-height-minus")
 const user_height_value = document.getElementById("user-height-value")
 
 const chair_height_value = document.getElementById("biometrics-value-chairheight")
-const desk_height_value = document.getElementById("biometrics-value-tableheight")
+const desk_height_value = document.getElementById("biometrics-value-deskheight")
 
 // TODO more heatings for chair
 const chair_heating_plus = document.getElementById("chair-heating-plus")
@@ -67,6 +67,9 @@ let user_height_value_content
 let chair_height_value_content
 let desk_height_value_content
 
+
+// Initial user_height_value_content, used to check availability of the save button
+let user_height_value_content_initial
 
 // Execute promises (weight promise)
 getWeightPromise.then(function whenOk(response) {
@@ -91,10 +94,14 @@ getUserInfoPromise.then(function whenOk(response) {
             // This should run only once ever (first time opening the app)
             if (response_2_json['message'] == "Setari actualizate cu succes") { 
                 // POST Request success, set default values
+                console.log("SETTING DEFAULT VALUES - FIRST TIME RUNNING APP")
+
                 user_height_value_content = 175
                 chair_height_value_content = 46.2
                 desk_height_value_content = 114.2
                 
+                user_height_value_content_initial = user_height_value_content
+
                 // Set values from db (or default if not found in db)
                 user_height_value.textContent = user_height_value_content
                 chair_height_value.textContent = chair_height_value_content
@@ -106,9 +113,13 @@ getUserInfoPromise.then(function whenOk(response) {
         })();
     } else {
         // Data exists already in db, update values
+        console.log("GETTING VALUES FROM DB")
+
         user_height_value_content = response['user_height']
         chair_height_value_content = response['chair_height']
         desk_height_value_content = response['desk_height']
+
+        user_height_value_content_initial = user_height_value_content
 
         // Set values from db (or default if not found in db)
         user_height_value.textContent = user_height_value_content
@@ -117,6 +128,38 @@ getUserInfoPromise.then(function whenOk(response) {
     }
 }).catch(function notOk(response) {
     console.log("Error in promise " + response)
+})
+
+// Save and refresh buttons events
+const save_button = document.getElementById("save-button")
+const refresh_button = document.getElementById("refresh-button")
+
+// Refresh button get weight
+refresh_button.addEventListener("click", () => {
+    // Promise for user weight
+    const getWeightPromise2 = new Promise(function(resolve, reject) {
+        void (async () => {
+            const url = HOST + '/weight/measure';
+            const defaultOptions = { method: 'GET' };
+        
+            const response = await request(url, defaultOptions);
+            const response_json = await response.json();
+            
+            if (response_json) { resolve(response_json) } else {
+                reject(response)
+            }
+        })();
+    })
+
+    // Execute promises (weight promise)
+    console.log("CLICEKD")
+    getWeightPromise2.then(function whenOk(response) {
+        console.log(response)
+        const biometrics_weight = document.getElementById("biometrics-value-weight")
+        biometrics_weight.textContent = response['weight']
+    }).catch(function notOk(response) {
+        console.log("Error in promise " + response)
+    })
 })
 
 

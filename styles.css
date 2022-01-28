@@ -159,13 +159,57 @@ body {
     color: #363740;
 }
 
+.overview-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button-overview {
+    font-family: "Mulish-Bold";
+    border: none;
+    color: #363740;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 1px #DFE0EB solid;
+    transition: 0.2s;
+}
+
+.button-overview-refresh {
+    background-color: white;
+    margin-right: 10px;
+}
+
+.button-overview-save {
+    background-color: white;
+    padding: 15px 40px;
+}
+
+.button-overview:hover {
+    cursor: pointer;
+    background-color: #F7FAFC;
+    transition: 0.2s;
+}
+
+.button-overview-refresh:active {
+    background-color: #DFEBEB;
+}
+
+.button-overview-save:active {
+    background-color: #DFEBEB;
+}
+
 /* Biometrics */
 
 .biometrics-content {
     display: flex;
     width: 962px;
     flex-direction: row;
-    margin-top: 40px;
+    margin-top: 18px;
     justify-content: space-between;
 }
 
