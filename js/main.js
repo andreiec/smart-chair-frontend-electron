@@ -152,11 +152,54 @@ refresh_button.addEventListener("click", () => {
     })
 
     // Execute promises (weight promise)
-    console.log("CLICEKD")
     getWeightPromise2.then(function whenOk(response) {
-        console.log(response)
         const biometrics_weight = document.getElementById("biometrics-value-weight")
         biometrics_weight.textContent = response['weight']
+    }).catch(function notOk(response) {
+        console.log("Error in promise " + response)
+    })
+})
+
+// Fereasca sfantul si bunul Dumnezeu ce am putut face aici
+save_button.addEventListener("click", () => {
+    const saveUserInfoData = new Promise(function(resolve, reject) {
+        void (async () => {
+            const url = HOST + '/userInfo';
+            const defaultOptions = { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({user_height: user_height_value_content})};
+
+            const response_2 = await request(url, defaultOptions);
+            let response_2_json = await response_2.json()
+            
+            if (response_2_json['message'] == "Setari actualizate cu succes") {
+                resolve(response_2_json)
+            } else {
+                reject(response_2)
+            }
+        })();
+    })
+
+    saveUserInfoData.then(function whenOk(response) {
+        void (async () => {
+            const url = HOST + '/userInfo';
+            const defaultOptions = { method: 'GET' };
+    
+            const response2 = await request(url, defaultOptions);
+            const response2_json = await response2.json();
+    
+            if (response2_json) { 
+                user_height_value_content = response2_json['user_height']
+                chair_height_value_content = response2_json['chair_height']
+                desk_height_value_content = response2_json['desk_height']
+        
+                user_height_value_content_initial = user_height_value_content
+
+                user_height_value.textContent = user_height_value_content
+                chair_height_value.textContent = chair_height_value_content
+                desk_height_value.textContent = desk_height_value_content   
+            } else {
+                reject(response2)
+            }
+        })();
     }).catch(function notOk(response) {
         console.log("Error in promise " + response)
     })
