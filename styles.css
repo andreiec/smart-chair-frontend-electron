@@ -85,6 +85,9 @@ body {
     left: 0;
     background: #363740;
     padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .sidebar h1 {
@@ -290,6 +293,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 342px;
+    justify-content: start;
 }
 
 .right-panel-item {
@@ -360,7 +364,7 @@ body {
 }
 
 .toggle.active {
-    background: #77C50A;
+    background: #5ca700;
     transition: 0.2s;
     transition-timing-function: ease-out;
 }

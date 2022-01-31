@@ -56,20 +56,12 @@ const user_height_value = document.getElementById("user-height-value")
 const chair_height_value = document.getElementById("biometrics-value-chairheight")
 const desk_height_value = document.getElementById("biometrics-value-deskheight")
 
-// TODO more heatings for chair
-const chair_heating_plus = document.getElementById("chair-heating-plus")
-const chair_heating_minus = document.getElementById("chair-heating-minus")
-const chair_heating_value = document.getElementById("chair-heating-value")
-
 
 // Declare user info values and biometrics
 let user_height_value_content 
 let chair_height_value_content
 let desk_height_value_content
 
-
-// Initial user_height_value_content, used to check availability of the save button
-let user_height_value_content_initial
 
 // Execute promises (weight promise)
 getWeightPromise.then(function whenOk(response) {
@@ -99,8 +91,6 @@ getUserInfoPromise.then(function whenOk(response) {
                 user_height_value_content = 175
                 chair_height_value_content = 46.2
                 desk_height_value_content = 114.2
-                
-                user_height_value_content_initial = user_height_value_content
 
                 // Set values from db (or default if not found in db)
                 user_height_value.textContent = user_height_value_content
@@ -112,14 +102,16 @@ getUserInfoPromise.then(function whenOk(response) {
             }
         })();
     } else {
+        if (response['error']) {
+            console.log(response)
+            return
+        }
         // Data exists already in db, update values
         console.log("GETTING VALUES FROM DB")
 
         user_height_value_content = response['user_height']
         chair_height_value_content = response['chair_height']
         desk_height_value_content = response['desk_height']
-
-        user_height_value_content_initial = user_height_value_content
 
         // Set values from db (or default if not found in db)
         user_height_value.textContent = user_height_value_content
@@ -205,12 +197,6 @@ save_button.addEventListener("click", () => {
     })
 })
 
-
-// Set chair heating
-let chair_heating_value_content = 21
-chair_heating_value.textContent = chair_heating_value_content + "°C"
-
-
 // User height buttons
 user_height_plus.addEventListener("click", () => {
     if (user_height_value_content < 230){
@@ -226,31 +212,99 @@ user_height_minus.addEventListener("click", () => {
     }
 })
 
+
+// Set chair heating
+let seat_heating_value_content = 21
+let backrest_heating_value_content = 21
+let headrest_heating_value_content = 21
+let armrest_heating_value_content = 21
+
+
+// Get tags for heatings
+const seat_heating_plus = document.getElementById("seat-heating-plus")
+const seat_heating_minus = document.getElementById("seat-heating-minus")
+const seat_heating_value = document.getElementById("seat-heating-value")
+
+const backrest_heating_plus = document.getElementById("backrest-heating-plus")
+const backrest_heating_minus = document.getElementById("backrest-heating-minus")
+const backrest_heating_value = document.getElementById("backrest-heating-value")
+
+const headrest_heating_plus = document.getElementById("headrest-heating-plus")
+const headrest_heating_minus = document.getElementById("headrest-heating-minus")
+const headrest_heating_value = document.getElementById("headrest-heating-value")
+
+const armrest_heating_plus = document.getElementById("armrest-heating-plus")
+const armrest_heating_minus = document.getElementById("armrest-heating-minus")
+const armrest_heating_value = document.getElementById("armrest-heating-value")
+
+seat_heating_value.textContent = seat_heating_value_content + "°C"
+backrest_heating_value.textContent = backrest_heating_value_content + "°C"
+headrest_heating_value.textContent = headrest_heating_value_content + "°C"
+armrest_heating_value.textContent = armrest_heating_value_content + "°C"
+
+
 // Chair Heating buttons
-chair_heating_plus.addEventListener("click", () => {
-    if (chair_heating_value_content < 25){
-        chair_heating_value_content++
-        chair_heating_value.textContent = chair_heating_value_content + "°C"
+seat_heating_plus.addEventListener("click", () => {
+    if (seat_heating_value_content < 25){
+        seat_heating_value_content++
+        seat_heating_value.textContent = seat_heating_value_content + "°C"
     }
 })
 
-chair_heating_minus.addEventListener("click", () => {
-    if (chair_heating_value_content > 18){
-        chair_heating_value_content--
-        chair_heating_value.textContent = chair_heating_value_content + "°C"
+seat_heating_minus.addEventListener("click", () => {
+    if (seat_heating_value_content > 18){
+        seat_heating_value_content--
+        seat_heating_value.textContent = seat_heating_value_content + "°C"
+    }
+})
+
+backrest_heating_plus.addEventListener("click", () => {
+    if (backrest_heating_value_content < 25){
+        backrest_heating_value_content++
+        backrest_heating_value.textContent = backrest_heating_value_content + "°C"
+    }
+})
+
+backrest_heating_minus.addEventListener("click", () => {
+    if (backrest_heating_value_content > 18){
+        backrest_heating_value_content--
+        backrest_heating_value.textContent = backrest_heating_value_content + "°C"
+    }
+})
+
+headrest_heating_plus.addEventListener("click", () => {
+    if (headrest_heating_value_content < 25){
+        headrest_heating_value_content++
+        headrest_heating_value.textContent = headrest_heating_value_content + "°C"
+    }
+})
+
+headrest_heating_minus.addEventListener("click", () => {
+    if (headrest_heating_value_content > 18){
+        headrest_heating_value_content--
+        headrest_heating_value.textContent = headrest_heating_value_content + "°C"
+    }
+})
+
+armrest_heating_plus.addEventListener("click", () => {
+    if (armrest_heating_value_content < 25){
+        armrest_heating_value_content++
+        armrest_heating_value.textContent = armrest_heating_value_content + "°C"
+    }
+})
+
+armrest_heating_minus.addEventListener("click", () => {
+    if (armrest_heating_value_content > 18){
+        armrest_heating_value_content--
+        armrest_heating_value.textContent = armrest_heating_value_content + "°C"
     }
 })
 
 // Toggle buttons
 const lock_toggle = document.getElementById("lock-toggle")
-const welcome_toggle = document.getElementById("welcome-toggle")
-const heat_toggle = document.getElementById("heat-toggle")
-
 
 // TODO Get state from user preferences and change button state
 let lock_toggle_state = false
-let welcome_toggle_state = false
-let heat_toggle_state = false
 
 
 lock_toggle.addEventListener("click", () =>{
@@ -263,22 +317,3 @@ lock_toggle.addEventListener("click", () =>{
     }
 })
 
-welcome_toggle.addEventListener("click", () =>{
-    welcome_toggle.classList.toggle("active")
-
-    if (welcome_toggle.classList.contains("active")) {
-        welcome_toggle_state = true
-    } else {
-        welcome_toggle_state = false
-    }
-})
-
-heat_toggle.addEventListener("click", () =>{
-    heat_toggle.classList.toggle("active")
-
-    if (heat_toggle.classList.contains("active")) {
-        heat_toggle_state = true
-    } else {
-        heat_toggle_state = false
-    }
-})
