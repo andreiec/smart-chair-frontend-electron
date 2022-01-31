@@ -62,6 +62,11 @@ let user_height_value_content
 let chair_height_value_content
 let desk_height_value_content
 
+// Set chair heating
+let seat_heating_value_content = 21
+let backrest_heating_value_content = 21
+let headrest_heating_value_content = 21
+let armrest_heating_value_content = 21
 
 // Execute promises (weight promise)
 getWeightPromise.then(function whenOk(response) {
@@ -163,6 +168,7 @@ save_button.addEventListener("click", () => {
             let response_2_json = await response_2.json()
             
             if (response_2_json['message'] == "Setari actualizate cu succes") {
+                console.log("Height updated!\nHeight: " + user_height_value_content)
                 resolve(response_2_json)
             } else {
                 reject(response_2)
@@ -182,8 +188,6 @@ save_button.addEventListener("click", () => {
                 user_height_value_content = response2_json['user_height']
                 chair_height_value_content = response2_json['chair_height']
                 desk_height_value_content = response2_json['desk_height']
-        
-                user_height_value_content_initial = user_height_value_content
 
                 user_height_value.textContent = user_height_value_content
                 chair_height_value.textContent = chair_height_value_content
@@ -195,6 +199,33 @@ save_button.addEventListener("click", () => {
     }).catch(function notOk(response) {
         console.log("Error in promise " + response)
     })
+
+    // SAVE HEATINGS
+    void (async () => {
+        const url = HOST + '/heat';
+        const defaultOptions = { 
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                head_rest: headrest_heating_value_content,
+                back_rest: backrest_heating_value_content,
+                arm_rest: armrest_heating_value_content,
+                bum_rest: seat_heating_value_content,
+        })};
+
+        const response_2 = await request(url, defaultOptions);
+        let response_2_json = await response_2.json()
+        
+        if (response_2_json['message'] == "ok") {
+            console.log("Heat settings updated!\n" + 
+            "Seat: " + seat_heating_value_content + "\n" + 
+            "Backrest: " + backrest_heating_value_content + "\n" + 
+            "Headrest: " + headrest_heating_value_content + "\n" + 
+            "Armrest: " + armrest_heating_value_content + "\n")
+        } else {
+            console.log("Cannot post heat settings")
+        }
+    })();
 })
 
 // User height buttons
@@ -211,13 +242,6 @@ user_height_minus.addEventListener("click", () => {
         user_height_value.textContent = user_height_value_content
     }
 })
-
-
-// Set chair heating
-let seat_heating_value_content = 21
-let backrest_heating_value_content = 21
-let headrest_heating_value_content = 21
-let armrest_heating_value_content = 21
 
 
 // Get tags for heatings
