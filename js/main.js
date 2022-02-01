@@ -351,20 +351,5 @@ armrest_heating_minus.addEventListener("click", () => {
     }
 })
 
-// Toggle buttons
-const lock_toggle = document.getElementById("lock-toggle")
 
-// TODO Get state from user preferences and change button state
-let lock_toggle_state = false
-
-
-lock_toggle.addEventListener("click", () =>{
-    lock_toggle.classList.toggle("active")
-
-    if (lock_toggle.classList.contains("active")) {
-        lock_toggle_state = true
-    } else {
-        lock_toggle_state = false
-    }
-})
 

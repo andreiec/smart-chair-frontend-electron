@@ -111,7 +111,7 @@
                                 <label>Room Temperature</label>
                             </div>
                             <div class="biometrics-item-value">
-                                <label>21°C</label>
+                                <label id="biometrics-value-roomtemperature">21°C</label>
                             </div>
                         </div>
     
@@ -132,6 +132,12 @@
                         <!-- Left Panel -->
                         <div class="left-panel">
                             <div class="left-panel-title-div"><label>Biometrics</label></div>
+                            <div class="left-panel-heating-display">
+                                <h3 id="left-panel-seat-heating-value">Seat heating: OFF</h3>
+                                <h3 id="left-panel-backrest-heating-value">Backrest heating: OFF</h3>
+                                <h3 id="left-panel-headrest-heating-value">Headrest heating: OFF</h3>
+                                <h3 id="left-panel-armrest-heating-value">Armrest heating: OFF</h3>
+                            </div>
                             <div class="left-panel-image-div" id="renderer-canvas"></div>
                         </div>
 
@@ -235,5 +241,6 @@
         </div>
         <script type="module" src="js/main.js"></script>
         <script type="module" src="js/renderer.js"></script>
+        <script type="module" src="js/subscriptions.js"></script>
     </body>
 </html>

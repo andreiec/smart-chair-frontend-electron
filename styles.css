@@ -289,6 +289,18 @@ body {
     padding-right: 25px;
 }
 
+.left-panel-heating-display {
+    position: absolute;
+    top: 335px;
+    left: 755px;
+    font-size: 10px;
+    font-family: "Mulish-Bold";
+}
+
+.left-panel-heating-display h3 {
+    margin-top: -10px;
+}
+
 .right-panel {
     display: flex;
     flex-direction: column;
