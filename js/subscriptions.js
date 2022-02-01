@@ -77,8 +77,8 @@ client.on('message', function (topic, message) {
         room_temperature_value.innerText = message + "°C"
     }
 
-    else if (topic == "ridicat_asezat") {
-        if (lock_toggle_state) {
+    else if (topic == "scaun/user_asezat") {
+        if (lock_toggle_state && message == "False") {
             console.log("Logged off!")
             //shutdown.logoff()
         }
