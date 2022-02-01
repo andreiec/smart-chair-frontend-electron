@@ -123,6 +123,33 @@ getUserInfoPromise.then(function whenOk(response) {
         chair_height_value.textContent = chair_height_value_content
         desk_height_value.textContent = desk_height_value_content
     }
+
+    // Save default heatings values
+    void (async () => {
+        const url = HOST + '/heat';
+        const defaultOptions = { 
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                head_rest: headrest_heating_value_content,
+                back_rest: backrest_heating_value_content,
+                arm_rest: armrest_heating_value_content,
+                bum_rest: seat_heating_value_content,
+        })};
+
+        const response_2 = await request(url, defaultOptions);
+        let response_2_json = await response_2.json()
+        
+        if (response_2_json['message'] == "ok") {
+            console.log("Heat settings updated!\n" + 
+            "Seat: " + seat_heating_value_content + "\n" + 
+            "Backrest: " + backrest_heating_value_content + "\n" + 
+            "Headrest: " + headrest_heating_value_content + "\n" + 
+            "Armrest: " + armrest_heating_value_content + "\n")
+        } else {
+            console.log("Cannot post heat settings")
+        }
+    })();
 }).catch(function notOk(response) {
     console.log("Error in promise " + response)
 })
